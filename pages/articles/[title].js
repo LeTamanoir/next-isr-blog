@@ -28,9 +28,7 @@ export default function Article({ article }) {
 }
 
 export async function getStaticProps({ params }) {
-  const db = require("better-sqlite3")(
-    require("path").resolve(__dirname, "database.sqlite")
-  );
+  const db = require("better-sqlite3")("database.sqlite");
   const article = db
     .prepare("SELECT * FROM `articles` WHERE `title` = ?")
     .get(params.title);
@@ -48,9 +46,7 @@ export async function getStaticProps({ params }) {
   };
 }
 export async function getStaticPaths() {
-  const db = require("better-sqlite3")(
-    require("path").resolve(__dirname, "database.sqlite")
-  );
+  const db = require("better-sqlite3")("database.sqlite");
   const paths = db
     .prepare("SELECT `title` FROM `articles`")
     .all()

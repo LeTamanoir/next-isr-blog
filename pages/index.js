@@ -38,9 +38,7 @@ export default function Home({ articles }) {
 }
 
 export async function getServerSideProps() {
-  const db = require("better-sqlite3")(
-    require("path").resolve(__dirname, "database.sqlite")
-  );
+  const db = require("better-sqlite3")("database.sqlite");
   const articles = db.prepare("SELECT `title`,`id` FROM `articles`").all();
 
   return {

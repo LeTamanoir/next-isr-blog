@@ -33,9 +33,7 @@ export default function Edit({ articleData }) {
 }
 
 export async function getServerSideProps(ctx) {
-  const db = require("better-sqlite3")(
-    require("path").resolve(__dirname, "database.sqlite")
-  );
+  const db = require("better-sqlite3")("database.sqlite");
   const articleData = db
     .prepare("SELECT * FROM `articles` WHERE `id` = ?")
     .get(ctx.query.id);
