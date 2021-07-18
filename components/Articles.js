@@ -5,7 +5,7 @@ export default function Articles({ articles, onDelete, onEdit }) {
     <div className="container mt-5">
       <div className="row g-4">
         {articles.map((article) => (
-          <div key={article.id} className="col-4">
+          <div key={article.id} className="col-12 col-lg-4">
             <div className="p-3 border rounded ">
               <h3 className="text-break">{article.title}</h3>
               <div className="d-flex justify-content-between align-items-center">
