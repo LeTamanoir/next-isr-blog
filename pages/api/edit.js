@@ -6,4 +6,5 @@ export default function handler(req, res) {
     ).run(req.body);
   }
   res.send(200);
+  db.close();
 }
