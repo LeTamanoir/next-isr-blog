@@ -22,9 +22,6 @@ export default function Home({ articles }) {
 
   return (
     <>
-      <Head>
-        <title>ISR BLOG</title>
-      </Head>
       <Link href="/add">
         <a className="btn btn-primary">Add</a>
       </Link>
