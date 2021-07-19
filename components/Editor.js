@@ -1,4 +1,5 @@
 import Link from "next/link";
+import sanitizeHtml from "sanitize-html";
 
 export default function Editor({ article, setArticle, markdown, onSubmit }) {
   return (
@@ -27,8 +28,15 @@ export default function Editor({ article, setArticle, markdown, onSubmit }) {
             className="w-100 markdown-body overflow-scroll"
             style={{ height: "60vh" }}
             dangerouslySetInnerHTML={{
-              __html: markdown.render(
-                article.content.length > 0 ? article.content : ""
+              __html: sanitizeHtml(
+                markdown.render(
+                  article.content.length > 0 ? article.content : ""
+                ),
+                {
+                  allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+                    "img",
+                  ]),
+                }
               ),
             }}
           ></div>
