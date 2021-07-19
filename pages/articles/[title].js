@@ -5,6 +5,7 @@ var markdown = require("markdown-it")({
 });
 import Link from "next/link";
 import Head from "next/head";
+import sanitizeHtml from "sanitize-html";
 
 export default function Article({ article }) {
   return (
@@ -17,7 +18,16 @@ export default function Article({ article }) {
         <hr />
         <div
           className="markdown-body"
-          dangerouslySetInnerHTML={{ __html: markdown.render(article.content) }}
+          dangerouslySetInnerHTML={{
+            __html: sanitizeHtml(
+              markdown.render(
+                article.content.length > 0 ? article.content : ""
+              ),
+              {
+                allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+              }
+            ),
+          }}
         ></div>
       </article>
       <Link href="/">
